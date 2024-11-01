@@ -1,6 +1,6 @@
 const axios = require('axios');
-const Favorite = require('./models/Favorite');
-const Watchlist = require('./models/Watchlist');
+const Favorite = require('../models/Favorite');
+const Watchlist = require('../models/Watchlist');
 
 exports.getMovies = async (req, res) => {
     const query = req.query.query || '';

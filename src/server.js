@@ -2,8 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const authController = require('./authController');
-const movieController = require('./movieController')
+const authController = require('./controllers/authControllerauthController');
+const movieController = require('./controllers/movieController')
 const authMiddleware = require('./middlewares/authMiddleware')
 const { sequelize } = require('./models');
 
