@@ -14,7 +14,6 @@ exports.getMovies = async (req, res) => {
     }
 };
 
-
 exports.addFavorite = async (req, res) => {
     const { movieId } = req.body;
     await Favorite.create({ userId: req.user.userId, movieId });

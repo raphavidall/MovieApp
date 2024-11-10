@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db'); // Conexão com o banco de dados
+const db = require('../config/db'); // Conexão com o banco de dados
 
-const User = sequelize.define('User', {
+const User = db.define('User', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,

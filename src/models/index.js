@@ -1,4 +1,4 @@
-const sequelize = require('../db');
+const db = require('../config/db');
 const User = require('./User');
 const Favorite = require('./Favorite');
 const Watchlist = require('./Watchlist');
@@ -10,4 +10,4 @@ Favorite.belongsTo(User, { foreignKey: 'userId' });
 User.hasMany(Watchlist, { foreignKey: 'userId', onDelete: 'CASCADE' });
 Watchlist.belongsTo(User, { foreignKey: 'userId' });
 
-module.exports = { sequelize, User, Favorite, Watchlist };
+module.exports = { db, User, Favorite, Watchlist };

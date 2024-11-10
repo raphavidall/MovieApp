@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db');
+const db = require('../config/db');
 const User = require('./User'); // Importa o modelo User
 
-const Watchlist = sequelize.define('Watchlist', {
+const Watchlist = db.define('Watchlist', {
     movieId: {
         type: DataTypes.INTEGER,
         allowNull: false,
