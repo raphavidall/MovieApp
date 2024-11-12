@@ -14,11 +14,13 @@ const PORT = process.env.PORT || 3000;
 app.post('/register', authController.register);
 app.post('/login', authController.login);
 app.post('/logout', authController.logout);
-app.get('/movies', movieController.getMovies);
+app.get('/movies', movieController.getMovies); 
 app.post('/favorites', authMiddleware, movieController.addFavorite);
 app.delete('/favorites', authMiddleware, movieController.removeFavorite);
 app.post('/watchlist', authMiddleware, movieController.addWatchlist);
 app.delete('/watchlist', authMiddleware, movieController.removeWatchlist);
+app.get('/watchlist/populares', authMiddleware, movieController.getMoviesPopulares);
+
 
 //Sincronizando o banco de dados
 db.sync({ alter: true })

@@ -37,3 +37,15 @@ exports.removeWatchlist = async (req, res) => {
     await Watchlist.destroy({ where: { userId: req.user.userId, movieId } });
     res.json({ message: 'Filme removido da watchlist!' });
 };
+
+exports.getMoviesPopulares = async (req, res) => {
+    const query = req.query.query || '';
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}`;
+    
+    try {
+        const response = await axios.get(url);
+        res.json(response.data.results);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar filmes populares' });
+    }
+};

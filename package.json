@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/iindex.js"
+    "dev": "nodemon src/index.js"
   },
   "author": "Raphaela, Italo, Cristiano, Amanda e Samara",
   "license": "ISC",

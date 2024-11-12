@@ -9,7 +9,7 @@ const Watchlist = db.define('Watchlist', {
     },
     title: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     posterPath: {
         type: DataTypes.STRING,
