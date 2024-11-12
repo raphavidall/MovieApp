@@ -22,4 +22,5 @@ db.authenticate()
         console.error('Não foi possível conectar ao banco de dados:', error);
     });
 
-module.exports = db;
+module.exports = db; console.log
+
