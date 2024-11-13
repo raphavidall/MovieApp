@@ -3,8 +3,10 @@ const app = express();
 const db = require('./config/db');  
 const dotenv = require('dotenv');
 const authController = require('./controllers/authController'); 
+const { getAllUsers, deleteUser} = require('./controllers/authController'); // Rota consulta e exclusão de usuário - Cristiano
 const movieController = require('./controllers/movieController');
 const authMiddleware = require('./middlewares/authMiddleware');
+
 app.use(express.json()); 
 dotenv.config();
 
