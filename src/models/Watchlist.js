@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const db = require('../config/db');
 const User = require('./User');
 
-const Watchlist = db.define('Watchlist', {
+const Watchlist = db.define('watchlist', {
     movieId: {
         type: DataTypes.INTEGER,
         allowNull: false,
