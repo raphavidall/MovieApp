@@ -2,26 +2,37 @@ const express = require('express');
 const app = express();
 const db = require('./config/db');  
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 const authController = require('./controllers/authController'); 
-const { getAllUsers, deleteUser} = require('./controllers/authController'); // Rota consulta e exclusão de usuário - Cristiano
+const adminController = require('./controllers/adminController'); // Rota consulta e exclusão de usuário - Cristiano
 const movieController = require('./controllers/movieController');
-const authMiddleware = require('./middlewares/authMiddleware');
+const { authMiddleware, isAdmin } = require('./middlewares/authMiddleware');
+const cors = require('cors');
 
+app.use(cors());
+app.use(bodyParser.json());
 app.use(express.json()); 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
-// Definindo rotas
+// Rotas publicas
 app.post('/register', authController.register);
 app.post('/login', authController.login);
-app.post('/logout', authController.logout);
-app.get('/movies', movieController.getMovies); 
+
+// Rotas user
+app.post('/logout', authMiddleware, authController.logout);
+app.get('/movies', authMiddleware, movieController.getMovies); 
 app.post('/favorites', authMiddleware, movieController.addFavorite);
 app.delete('/favorites', authMiddleware, movieController.removeFavorite);
 app.post('/watchlist', authMiddleware, movieController.addWatchlist);
 app.delete('/watchlist', authMiddleware, movieController.removeWatchlist);
 app.get('/watchlist/populares', authMiddleware, movieController.getMoviesPopulares);
+
+// Rotas admin
+app.get('/users', authMiddleware, isAdmin, adminController.getAllUsers)
+app.put('/users/:id', authMiddleware, isAdmin, adminController.updateUser);
+app.delete('/users/:id', authMiddleware, isAdmin, adminController.deleteUser);
 
 
 //Sincronizando o banco de dados

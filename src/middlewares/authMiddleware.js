@@ -12,4 +12,12 @@ const authMiddleware = (req, res, next) => {
     });
 };
 
-module.exports = authMiddleware;
+const isAdmin = (req, res, next) => {
+    // Verifica se o usuário tem a role de 'admin'
+    if (req.user.role !== 'admin') {
+        return res.status(403).json({ error: 'Acesso negado! Usuário não autorizado.' });
+    }
+    next();
+};
+
+module.exports = { authMiddleware, isAdmin };
